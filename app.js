@@ -20,6 +20,12 @@ app.get("/", (req, res) => {
   res.render("home");
 });
 
+app.get("/campgrounds", async (req, res) => {
+  const campgrounds = await Campground.find({ title });
+  console.log(campgrounds.location);
+  res.render("campgrounds/index", { campgrounds });
+});
+
 app.get("/makecampground", async (req, res) => {
   const camp = new Campground({
     title: "Bhartiye camp",
