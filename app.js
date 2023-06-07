@@ -9,11 +9,7 @@ const methodOverride = require("method-override");
 const Campground = require("./models/campground");
 const Review = require("./models/review");
 
-mongoose.connect("mongodb://localhost:27017/yelp-camp", {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect("mongodb://127.0.0.1:27017/yelp-camp");
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
@@ -55,6 +51,7 @@ app.get("/", (req, res) => {
 app.get(
   "/campgrounds",
   catchAsync(async (req, res) => {
+    console.log("Some text");
     const campgrounds = await Campground.find({});
     res.render("campgrounds/index", { campgrounds });
   })
